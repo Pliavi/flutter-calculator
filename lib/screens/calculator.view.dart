@@ -1,5 +1,7 @@
 import 'package:calculadora/screens/calculator.controller.dart';
+import 'package:calculadora/widgets/calculator_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class Calculator extends StatelessWidget {
   const Calculator({super.key});
@@ -13,148 +15,127 @@ class Calculator extends StatelessWidget {
       builder: (context, child) {
         return Material(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Container(
-                color: Colors.white,
-                child: Text(
-                  controller.display,
-                  style: const TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.bottomRight,
+                  color: Theme.of(context).cardColor,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  child: Text(
+                    controller.display,
+                    style: const TextStyle(
+                      fontSize: 48,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
               const Divider(),
-              GridView.count(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                primary: true,
-                crossAxisCount: 4,
-                padding: const EdgeInsets.all(8),
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-                children: [
-                  // Clear, erase, percent, divide
-                  CalcButton(
-                    controller: controller,
-                    text: 'C',
-                    type: ButtonType.clear,
-                    focus: controller.onError,
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '⌫',
-                    type: ButtonType.erase,
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '%',
-                    type: ButtonType.percentage,
-                    value: '%',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '÷',
-                    type: ButtonType.operator,
-                    value: '÷',
-                  ),
-                  // 7, 8, 9, multiply
-                  CalcButton(
-                    controller: controller,
-                    text: '7',
-                    type: ButtonType.number,
-                    value: '7',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '8',
-                    type: ButtonType.number,
-                    value: '8',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '9',
-                    type: ButtonType.number,
-                    value: '9',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: 'x',
-                    type: ButtonType.operator,
-                    value: 'x',
-                  ),
-                  // 4, 5, 6, minus
-                  CalcButton(
-                    controller: controller,
-                    text: '4',
-                    type: ButtonType.number,
-                    value: '4',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '5',
-                    type: ButtonType.number,
-                    value: '5',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '6',
-                    type: ButtonType.number,
-                    value: '6',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '-',
-                    type: ButtonType.operator,
-                    value: '-',
-                  ),
-                  // 1, 2, 3, plus
-                  CalcButton(
-                    controller: controller,
-                    text: '1',
-                    type: ButtonType.number,
-                    value: '1',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '2',
-                    type: ButtonType.number,
-                    value: '2',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '3',
-                    type: ButtonType.number,
-                    value: '3',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '+',
-                    type: ButtonType.operator,
-                    value: '+',
-                  ),
-                  // empty space, 0, dot, equals
-                  Container(),
-                  CalcButton(
-                    controller: controller,
-                    text: '0',
-                    type: ButtonType.number,
-                    value: '0',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '.',
-                    type: ButtonType.dot,
-                    value: '.',
-                  ),
-                  CalcButton(
-                    controller: controller,
-                    text: '=',
-                    type: ButtonType.equals,
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: StaggeredGrid.count(
+                  crossAxisCount: 4,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  children: [
+                    // Clear, erase, percent, divide
+                    _StaggeredTile(
+                      child: CalcButton.clear(controller: controller),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.erase(controller: controller),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.percentage(controller: controller),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.operator(
+                        controller: controller,
+                        text: '÷',
+                        operator: '/',
+                      ),
+                    ),
+                    // 7, 8, 9, multiply
+                    _StaggeredTile(
+                      child: CalcButton.number(
+                          controller: controller, number: '7'),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.number(
+                          controller: controller, number: '8'),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.number(
+                          controller: controller, number: '9'),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.operator(
+                        controller: controller,
+                        text: '×',
+                        operator: '*',
+                      ),
+                    ),
+                    // 4, 5, 6, minus
+                    _StaggeredTile(
+                      child: CalcButton.number(
+                          controller: controller, number: '4'),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.number(
+                          controller: controller, number: '5'),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.number(
+                          controller: controller, number: '6'),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.operator(
+                        controller: controller,
+                        text: '−',
+                        operator: '-',
+                      ),
+                    ),
+                    // 1, 2, 3, plus
+                    _StaggeredTile(
+                      child: CalcButton.number(
+                          controller: controller, number: '3'),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.number(
+                          controller: controller, number: '2'),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.number(
+                          controller: controller, number: '1'),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.operator(
+                        controller: controller,
+                        text: '+',
+                        operator: '+',
+                      ),
+                    ),
+                    // empty space, 0, dot, equals
+
+                    _StaggeredTile(
+                      crossAxisSpan: 2,
+                      child: CalcButton.number(
+                        controller: controller,
+                        number: '0',
+                      ),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.dot(controller: controller),
+                    ),
+                    _StaggeredTile(
+                      child: CalcButton.equals(controller: controller),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -164,30 +145,13 @@ class Calculator extends StatelessWidget {
   }
 }
 
-class CalcButton extends FilledButton {
-  CalcButton({
-    super.key,
-    required CalculatorController controller,
-    required String text,
-    required ButtonType type,
-    bool focus = false,
-    value = '',
-  }) : super(
-          onPressed: () => controller.onButtonPressed(type, value),
-          child: Text(text),
-          style: FilledButton.styleFrom(
-            textStyle: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-            backgroundColor: focus
-                ? Colors.red
-                : type == ButtonType.number
-                    ? Colors.blueGrey
-                    : null,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-            ),
-          ),
-        );
+class _StaggeredTile extends StaggeredGridTile {
+  const _StaggeredTile({
+    required Widget child,
+    int crossAxisSpan = 1,
+    int mainAxisSpan = 1,
+  }) : super.count(
+            crossAxisCellCount: crossAxisSpan,
+            mainAxisCellCount: mainAxisSpan,
+            child: child);
 }
