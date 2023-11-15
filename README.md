@@ -16,7 +16,8 @@ Faça também a sua! :tada:
 
 </center>
 
-> Qualquer similaridade com a calculadora do Gnome/Ubuntu é mera coincidência :sweat_smile: (Ou será que não? :thinking: )
+> Qualquer similaridade com a calculadora do Gnome/Ubuntu é mera coincidência :sweat_smile:  
+> (Ou será que não? :thinking: )
 
 ---
 
