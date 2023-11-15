@@ -1,16 +1,31 @@
-# calculadora
+# Calculadora
 
-A new Flutter project.
+Essa é a minha proposta de calculadora para o "exercício que todos os dev Flutter devem fazer"
+Baseado no vídeo do Youtube do @jacobaraujo7
 
-## Getting Started
+Link do video:  
+https://www.youtube.com/watch?v=y-jmO85Kkis
 
-This project is a starting point for a Flutter application.
+Faça também a sua! :tada:
 
-A few resources to get you started if this is your first Flutter project:
+# Screenshot
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<center>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot](./docs/capture.png)
+
+</center>
+
+> Qualquer similaridade com a calculadora do Gnome/Ubuntu é mera coincidência :sweat_smile: (Ou será que não? :thinking: )
+
+---
+
+# Calculator
+
+This is my proposal for a calculator to the "exercise that all Flutter developer should do"
+Based on @jacobaraujo7's video on Youtube
+
+Video link:  
+https://www.youtube.com/watch?v=y-jmO85Kkis
+
+Make yours too! :tada:
