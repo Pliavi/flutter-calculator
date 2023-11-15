@@ -138,8 +138,10 @@ class CalculatorController extends ChangeNotifier {
     final bufferLength = _numberBuffer.length;
     final displayLength = _display.length;
 
-    if (bufferLength > 1) {
-      _numberBuffer = _numberBuffer.substring(0, bufferLength - 1);
+    if (displayLength > 1) {
+      if (bufferLength > 0) {
+        _numberBuffer = _numberBuffer.substring(0, bufferLength - 1);
+      }
       _display = _display.substring(0, displayLength - 1);
     } else {
       _numberBuffer = '';
@@ -157,6 +159,8 @@ class CalculatorController extends ChangeNotifier {
 
       if (result.isInfinite) {
         throw CalculatorException('Divisão por zero');
+      } else if (result.isNaN) {
+        throw CalculatorException('Expressão inválida');
       }
 
       if (_isInteger(result)) {
