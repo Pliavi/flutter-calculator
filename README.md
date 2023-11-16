@@ -16,7 +16,7 @@ Faça também a sua! :tada:
 
 <center>
 
-![Screenshot](./docs/capture)
+![Screenshot](./docs/capture.mp4)
 
 </center>
 
