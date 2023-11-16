@@ -1,117 +1,107 @@
-import 'package:calculadora/screens/calculator.controller.dart';
+import 'package:calculadora/controllers/calculator/button_actions/button_action.dart';
+import 'package:calculadora/controllers/calculator/calculator.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:yaru/yaru.dart';
 
-ButtonStyle kButtonStyle = FilledButton.styleFrom(
-  textStyle: const TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-  ),
-  shape: const RoundedRectangleBorder(
-    borderRadius: BorderRadius.all(Radius.circular(8)),
-  ),
-);
-
-class CalcButton extends FilledButton {
-  CalcButton({
+class CButton extends StatelessWidget {
+  const CButton({
     super.key,
-    required CalculatorController controller,
-    required String text,
-    required ButtonType type,
-    Color? color,
-    value = '',
-  }) : super(
-            onPressed: () => controller.onButtonPressed(type, value),
-            child: Text(text),
-            style: kButtonStyle.copyWith(
-              backgroundColor: MaterialStateProperty.all<Color?>(
-                color,
-                // type == ButtonType.equals
-                //     ? YaruColors.orange
-                //     : error
-                //         ? YaruColors.red
-                //         : null,
-              ),
-            ));
+    required this.controller,
+    required this.action,
+    required this.text,
+  });
 
-  factory CalcButton.number({
-    required CalculatorController controller,
-    required String number,
-  }) {
-    // TODO: Remove this from factory to have access
-    //       to the theme from the context
-    final defaultBackgroundColor =
-        yaruDark.filledButtonTheme.style!.backgroundColor!.resolve(
-      {...MaterialState.values},
-    );
+  final CalculatorController controller;
+  final ButtonActionStrategy action;
+  final String text;
 
-    final newColor = defaultBackgroundColor?.withOpacity(0.2);
-
-    return CalcButton(
-      controller: controller,
-      text: number,
-      type: ButtonType.number,
-      value: number,
-      color: newColor,
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton(
+      onPressed: () => controller.onButtonPressed(action),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
+}
 
-  factory CalcButton.operator({
-    required CalculatorController controller,
-    required String text,
-    required String operator,
-  }) {
-    return CalcButton(
+class CButtonFactory {
+  const CButtonFactory({required this.controller, required this.context});
+
+  final CalculatorController controller;
+  final BuildContext context;
+
+  Widget normal(ButtonActionStrategy action, String text) {
+    return CButton(
       controller: controller,
+      action: action,
       text: text,
-      type: ButtonType.operator,
-      value: operator,
     );
   }
 
-  factory CalcButton.dot({required CalculatorController controller}) {
-    return CalcButton(
-      controller: controller,
-      text: '.',
-      type: ButtonType.dot,
-      value: '.',
+  Widget number(String number) {
+    final theme = Theme.of(context);
+
+    final filledButtonStyleDark = theme.filledButtonTheme.style?.copyWith(
+      backgroundColor: MaterialStatePropertyAll(YaruColors.inkstone.adjust(
+        lightness: 0.1,
+      )),
+      foregroundColor: const MaterialStatePropertyAll(Colors.white),
+    );
+
+    final filledButtonStyle = theme.filledButtonTheme.style?.copyWith(
+      backgroundColor: MaterialStatePropertyAll(YaruColors.porcelain.adjust(
+        lightness: -0.2,
+      )),
+      foregroundColor: const MaterialStatePropertyAll(YaruColors.textGrey),
+    );
+
+    return Theme(
+      data: theme.copyWith(
+        filledButtonTheme: FilledButtonThemeData(
+          style: theme.brightness == Brightness.dark
+              ? filledButtonStyleDark
+              : filledButtonStyle,
+        ),
+      ),
+      child: CButton(
+        controller: controller,
+        action: NumberButtonAction(number),
+        text: number,
+      ),
     );
   }
 
-  factory CalcButton.equals({required CalculatorController controller}) {
-    return CalcButton(
+  Widget operator(String operator, [String? text]) {
+    return CButton(
       controller: controller,
-      text: '=',
-      type: ButtonType.equals,
-      color: yaruDark.colorScheme.primary,
+      action: OperatorButtonAction(operator),
+      text: text ?? operator,
     );
   }
 
-  factory CalcButton.percentage({required CalculatorController controller}) {
-    return CalcButton(
-      controller: controller,
-      text: '%',
-      type: ButtonType.percentage,
-    );
-  }
+  Widget equals() {
+    final theme = Theme.of(context);
 
-  factory CalcButton.clear({
-    required CalculatorController controller,
-    bool error = false,
-  }) {
-    return CalcButton(
-      controller: controller,
-      text: 'AC',
-      type: ButtonType.clear,
-      color: error ? Colors.red : null,
+    final filledButtonStyle = theme.filledButtonTheme.style?.copyWith(
+      backgroundColor: MaterialStatePropertyAll(theme.primaryColor),
+      foregroundColor: const MaterialStatePropertyAll(Colors.white),
     );
-  }
 
-  factory CalcButton.erase({required CalculatorController controller}) {
-    return CalcButton(
-      controller: controller,
-      text: '⌫',
-      type: ButtonType.erase,
+    return Theme(
+      data: theme.copyWith(
+        filledButtonTheme: FilledButtonThemeData(style: filledButtonStyle),
+      ),
+      child: CButton(
+        controller: controller,
+        action: const EqualsButtonAction(),
+        text: '=',
+      ),
     );
   }
 }
