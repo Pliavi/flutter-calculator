@@ -1,4 +1,5 @@
 import 'package:calculadora/screens/calculator.view.dart';
+import 'package:calculadora/widgets/theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:yaru/yaru.dart';
@@ -11,10 +12,11 @@ void main() async {
   WindowOptions windowOptions = const WindowOptions(
     size: Size(450, 790),
     skipTaskbar: false,
-    titleBarStyle: TitleBarStyle.normal,
+    titleBarStyle: TitleBarStyle.hidden,
     maximumSize: Size(450, 790),
     minimumSize: Size(450, 790),
     title: "Calculadora",
+    backgroundColor: Colors.transparent,
   );
   windowManager.setAspectRatio(1 / 1.75);
 
@@ -31,16 +33,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YaruTheme(
-      builder: (context, yaru, child) {
-        return MaterialApp(
-          title: 'Calculadora',
-          theme: yaru.theme,
-          darkTheme: yaru.darkTheme,
-          home: const Calculator(),
-          debugShowCheckedModeBanner: false,
-        );
-      },
+    final themeSwitcher = ThemeSwitcher();
+
+    return ThemeSwitcherProvider(
+      themeSwitcher: themeSwitcher,
+      child: ListenableBuilder(
+        listenable: themeSwitcher,
+        builder: (context, child) => YaruTheme(
+          data: YaruThemeData(variant: themeSwitcher.variant),
+          builder: (context, yaru, child) {
+            return MaterialApp(
+              title: 'Calculadora',
+              theme: yaru.theme,
+              darkTheme: yaru.darkTheme,
+              home: const Calculator(),
+              debugShowCheckedModeBanner: false,
+            );
+          },
+        ),
+      ),
     );
   }
 }
