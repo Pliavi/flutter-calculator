@@ -12,13 +12,9 @@ https://www.youtube.com/watch?v=y-jmO85Kkis
 
 Faça também a sua! :tada:
 
-# Screenshot
+# Demo
 
-<center>
-
-![Screenshot](./docs/capture.mp4)
-
-</center>
+[Calculator demo](./docs/capture.mp4)
 
 > Qualquer similaridade com a calculadora do Gnome/Ubuntu é mera coincidência :sweat_smile:  
 > (Ou será que não? :thinking: )
