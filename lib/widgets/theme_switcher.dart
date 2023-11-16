@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yaru/yaru.dart';
 
 class ThemeSwitcher extends ChangeNotifier {
-  final List<YaruVariant> _availableVariants = [
+  final List<YaruVariant> availableVariants = [
     YaruVariant.viridian,
     YaruVariant.ubuntuCinnamonBrown,
     YaruVariant.magenta,
@@ -10,23 +10,19 @@ class ThemeSwitcher extends ChangeNotifier {
     YaruVariant.lubuntuBlue,
   ];
 
-  int _currentVariantIndex = 0;
+  final List<String> variantNames = [
+    'Green',
+    'Orange',
+    'Magenta',
+    'Purple',
+    'Blue',
+  ];
 
   YaruVariant _variant = YaruVariant.viridian;
   YaruVariant get variant => _variant;
 
   set variant(YaruVariant variant) {
     _variant = variant;
-
-    notifyListeners();
-  }
-
-  @Deprecated("Use variant setter instead")
-  void nextVariant() {
-    _currentVariantIndex =
-        (_currentVariantIndex + 1) % _availableVariants.length;
-
-    _variant = _availableVariants[_currentVariantIndex];
 
     notifyListeners();
   }

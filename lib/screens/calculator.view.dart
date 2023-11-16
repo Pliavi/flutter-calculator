@@ -1,7 +1,7 @@
 import 'package:calculadora/controllers/calculator/button_actions/button_action.dart';
 import 'package:calculadora/controllers/calculator/calculator.controller.dart';
 import 'package:calculadora/widgets/calculator_button.dart';
-import 'package:calculadora/widgets/theme_switcher.dart';
+import 'package:calculadora/widgets/theme_switcher_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:window_manager/window_manager.dart';
@@ -30,29 +30,22 @@ class Calculator extends StatelessWidget {
             appBar: PreferredSize(
               preferredSize: const Size.fromHeight(46),
               child: GestureDetector(
-                onTapDown: (details) {
-                  windowManager.startDragging();
-                },
+                onTapDown: (details) => windowManager.startDragging(),
                 child: AppBar(
                   title: const Text('Calculadora'),
                   centerTitle: true,
                   elevation: 4,
                   shadowColor: Colors.black26,
                   actions: [
-                    IconButton(
-                      onPressed: () {
-                        ThemeSwitcherProvider.of(context)
-                            .themeSwitcher
-                            .nextVariant();
-                      },
-                      icon: const Icon(Icons.style),
-                    ),
+                    const ThemeSwitcherButton(),
                     const SizedBox(width: 8),
                     IconButton.filled(
-                      onPressed: () {
-                        windowManager.close();
-                      },
-                      icon: const Icon(Icons.close),
+                      onPressed: () => windowManager.close(),
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 16,
+                      ),
                     ),
                     const SizedBox(width: 8),
                   ],
