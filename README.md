@@ -1,5 +1,5 @@
-> :warning: Due to the window_manager package, it's only supported for desktop platforms (Linux, Windows and MacOS) :warning:  
-> :warning: Although I only tested it on Linux, so I can't guarantee it will work on other platforms :stuck_out_tongue_closed_eyes:
+> ### :warning: Due to the window_manager package, it's desktop platforms only
+> #### :warning: And as soon as I only tested it on Linux, I can't guarantee it will work on other platforms :stuck_out_tongue_closed_eyes:
 
 # Calculadora
 
