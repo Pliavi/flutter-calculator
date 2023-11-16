@@ -1,3 +1,6 @@
+> :warning: Due to the window_manager package, it's only supported for desktop platforms (Linux, Windows and MacOS) :warning:  
+> :warning: Although I only tested it on Linux, so I can't guarantee it will work on other platforms :stuck_out_tongue_closed_eyes:
+
 # Calculadora
 
 Essa é a minha proposta de calculadora para o "exercício que todos os dev Flutter devem fazer"
