@@ -1,4 +1,5 @@
-> ### :warning: Due to the window_manager package, it's desktop platforms only
+> ### :warning: Due to the window_manager package, it's desktop only
+>
 > #### :warning: And as soon as I only tested it on Linux, I can't guarantee it will work on other platforms :stuck_out_tongue_closed_eyes:
 
 # Calculadora
@@ -15,7 +16,7 @@ Faça também a sua! :tada:
 
 <center>
 
-![Screenshot](./docs/capture.png)
+![Screenshot](./docs/capture.webm)
 
 </center>
 
