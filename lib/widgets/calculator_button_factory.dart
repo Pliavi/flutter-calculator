@@ -5,17 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:yaru/yaru.dart';
 
 class CalculatorButtonFactory {
-  const CalculatorButtonFactory(
-      {required this.controller, required this.context});
+  const CalculatorButtonFactory({
+    required this.controller,
+    required this.context,
+  });
 
   final CalculatorController controller;
   final BuildContext context;
 
-  Widget normal(ButtonActionStrategy action, String text) {
+  Widget normal(ButtonActionStrategy action, String text,
+      [Color? backgroundColor]) {
     return CalculatorButton(
       controller: controller,
       action: action,
       text: text,
+      backgroundColor: backgroundColor,
     );
   }
 

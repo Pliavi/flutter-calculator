@@ -3,6 +3,7 @@ import 'package:calculadora/controllers/calculator/calculator.controller.dart';
 import 'package:calculadora/widgets/calculator_button_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:yaru/yaru.dart';
 
 class CalculatorKeyboardGrid extends StatelessWidget {
   const CalculatorKeyboardGrid({
@@ -25,7 +26,11 @@ class CalculatorKeyboardGrid extends StatelessWidget {
       children: [
         // clear, erase, percentage, divide
         _ButtonTile(
-          buttonFactory.normal(const ClearButtonAction(), clearButtonText),
+          buttonFactory.normal(
+            const ClearButtonAction(),
+            clearButtonText,
+            controller.hasError ? YaruColors.red : null,
+          ),
         ),
         _ButtonTile(buttonFactory.normal(const EraseButtonAction(), '⌫')),
         _ButtonTile(buttonFactory.normal(const PercentageButtonAction(), '%')),

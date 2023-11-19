@@ -8,15 +8,20 @@ class CalculatorButton extends StatelessWidget {
     required this.controller,
     required this.action,
     required this.text,
+    this.backgroundColor,
   });
 
   final CalculatorController controller;
   final ButtonActionStrategy action;
   final String text;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     return FilledButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(backgroundColor),
+      ),
       onPressed: () => controller.onButtonPressed(action),
       child: Text(
         text,
