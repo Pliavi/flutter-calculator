@@ -11,6 +11,7 @@ class CalculatorController extends ChangeNotifier {
   ButtonActionStrategy lastButtonAction = const ClearButtonAction();
   String buffer = '';
   bool hasError = false;
+  List<String> history = [];
 
   // TODO: Instead of using all this clear/set/append in the controller
   //       we could create value objects for display and buffer
