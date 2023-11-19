@@ -1,5 +1,5 @@
 import 'package:calculadora/controllers/calculator/button_actions/button_action.dart';
-import 'package:calculadora/controllers/calculator/calculator.controller.dart';
+import 'package:calculadora/controllers/calculator/calculator_controller.dart';
 import 'package:calculadora/widgets/calculator_button_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';

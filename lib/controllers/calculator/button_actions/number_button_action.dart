@@ -1,5 +1,5 @@
 import 'package:calculadora/controllers/calculator/button_actions/button_action.dart';
-import 'package:calculadora/controllers/calculator/calculator.controller.dart';
+import 'package:calculadora/controllers/calculator/calculator_controller.dart';
 
 class NumberButtonAction extends ButtonActionStrategy {
   const NumberButtonAction(super.value);

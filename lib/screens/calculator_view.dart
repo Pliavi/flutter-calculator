@@ -1,4 +1,4 @@
-import 'package:calculadora/controllers/calculator/calculator.controller.dart';
+import 'package:calculadora/controllers/calculator/calculator_controller.dart';
 import 'package:calculadora/widgets/calculator_display.dart';
 import 'package:calculadora/widgets/calculator_history_display.dart';
 import 'package:calculadora/widgets/calculator_keyboard_grid.dart';
@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yaru/yaru.dart';
 
-class Calculator extends StatelessWidget {
-  const Calculator({super.key});
+class CalculatorView extends StatelessWidget {
+  const CalculatorView({super.key});
 
   @override
   Widget build(BuildContext context) {

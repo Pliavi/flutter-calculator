@@ -1,5 +1,5 @@
 import 'package:calculadora/controllers/calculator/button_actions/button_action.dart';
-import 'package:calculadora/controllers/calculator/calculator.controller.dart';
+import 'package:calculadora/controllers/calculator/calculator_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

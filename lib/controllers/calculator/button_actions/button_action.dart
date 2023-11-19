@@ -1,4 +1,4 @@
-import 'package:calculadora/controllers/calculator/calculator.controller.dart';
+import 'package:calculadora/controllers/calculator/calculator_controller.dart';
 
 export 'clear_button_action.dart';
 export 'dot_button_action.dart';

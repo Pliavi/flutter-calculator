@@ -1,6 +1,6 @@
 import 'package:calculadora/config/window_manager_config.dart';
 import 'package:calculadora/providers/theme_switcher.dart';
-import 'package:calculadora/screens/calculator.view.dart';
+import 'package:calculadora/screens/calculator_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yaru/yaru.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
               title: 'Calculadora',
               theme: yaru.theme,
               darkTheme: yaru.darkTheme,
-              home: const Calculator(),
+              home: const CalculatorView(),
               debugShowCheckedModeBanner: false,
             );
           },
