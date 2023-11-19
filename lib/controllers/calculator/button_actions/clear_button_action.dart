@@ -6,7 +6,12 @@ class ClearButtonAction extends ButtonActionStrategy {
 
   @override
   void onPressed(CalculatorController controller) {
-    controller.clearDisplayAndBuffer();
+    if (controller.lastButtonAction is ClearButtonAction) {
+      controller.history.clear();
+    } else {
+      controller.clearDisplayAndBuffer();
+    }
+
     controller.hasError = false;
   }
 }

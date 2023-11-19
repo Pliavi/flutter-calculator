@@ -16,7 +16,7 @@ class CalculatorKeyboardGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final clearButtonText = controller.display.isEmpty ? 'AC' : 'C';
+    final clearButtonText = controller.display == "0" ? 'AC' : 'C';
 
     return StaggeredGrid.count(
       crossAxisCount: 4,

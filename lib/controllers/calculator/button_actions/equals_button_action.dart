@@ -8,7 +8,8 @@ class EqualsButtonAction extends ButtonActionStrategy {
   void onPressed(CalculatorController controller) {
     final result = controller.calculate(controller.display);
 
+    controller.history.add("${controller.display} = $result");
+
     controller.setDisplayAndBuffer(result);
-    controller.history.add(result);
   }
 }
