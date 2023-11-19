@@ -1,17 +1,14 @@
 import 'package:calculadora/controllers/calculator/calculator.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yaru/yaru.dart';
 
 class CalculatorDisplay extends StatelessWidget {
-  const CalculatorDisplay({
-    super.key,
-    required this.controller,
-  });
-
-  final CalculatorController controller;
+  const CalculatorDisplay({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.watch<CalculatorController>();
     final brightness = Theme.of(context).brightness;
     final theme = Theme.of(context);
     final displayColor = brightness == Brightness.dark

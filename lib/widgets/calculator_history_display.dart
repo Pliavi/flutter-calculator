@@ -1,19 +1,42 @@
 import 'package:calculadora/controllers/calculator/button_actions/history_entry_button_action.dart';
 import 'package:calculadora/controllers/calculator/calculator.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class CalculatorHistoryDisplay extends StatelessWidget {
-  const CalculatorHistoryDisplay({
-    super.key,
-    required ScrollController scrollController,
-    required this.controller,
-  }) : _scrollController = scrollController;
+class CalculatorHistoryDisplay extends StatefulWidget {
+  const CalculatorHistoryDisplay({super.key});
 
-  final ScrollController _scrollController;
-  final CalculatorController controller;
+  @override
+  State<CalculatorHistoryDisplay> createState() =>
+      _CalculatorHistoryDisplayState();
+}
+
+class _CalculatorHistoryDisplayState extends State<CalculatorHistoryDisplay> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    final controller = context.read<CalculatorController>();
+
+    controller.addListener(_scrollHistoryToBottom);
+  }
+
+  _scrollHistoryToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final bottom = _scrollController.position.maxScrollExtent;
+
+      _scrollController.animateTo(
+        bottom,
+        duration: const Duration(milliseconds: 150),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.watch<CalculatorController>();
     final theme = Theme.of(context);
 
     return Container(

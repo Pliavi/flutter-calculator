@@ -3,21 +3,22 @@ import 'package:calculadora/controllers/calculator/calculator.controller.dart';
 import 'package:calculadora/widgets/calculator_button_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
 import 'package:yaru/yaru.dart';
 
 class CalculatorKeyboardGrid extends StatelessWidget {
-  const CalculatorKeyboardGrid({
-    super.key,
-    required this.buttonFactory,
-    required this.controller,
-  });
-
-  final CalculatorButtonFactory buttonFactory;
-  final CalculatorController controller;
+  const CalculatorKeyboardGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.watch<CalculatorController>();
+    final CalculatorButtonFactory buttonFactory = CalculatorButtonFactory(
+      controller: controller,
+      context: context,
+    );
+
     final clearButtonText = controller.display == "0" ? 'AC' : 'C';
+    final clearButtonColor = controller.hasError ? YaruColors.red : null;
 
     return StaggeredGrid.count(
       crossAxisCount: 4,
@@ -29,7 +30,7 @@ class CalculatorKeyboardGrid extends StatelessWidget {
           buttonFactory.normal(
             const ClearButtonAction(),
             clearButtonText,
-            controller.hasError ? YaruColors.red : null,
+            clearButtonColor,
           ),
         ),
         _ButtonTile(buttonFactory.normal(const EraseButtonAction(), '⌫')),
