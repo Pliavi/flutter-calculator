@@ -12,13 +12,20 @@ class CalculatorDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Brightness brightness = Theme.of(context).brightness;
+    final brightness = Theme.of(context).brightness;
+    final theme = Theme.of(context);
+    final displayColor = brightness == Brightness.dark
+        ? YaruColors.inkstone
+        : YaruColors.porcelain;
 
     return Container(
       alignment: Alignment.bottomRight,
-      color: brightness == Brightness.dark
-          ? YaruColors.inkstone
-          : YaruColors.porcelain,
+      decoration: BoxDecoration(
+        color: displayColor,
+        border: Border(
+          top: BorderSide(color: theme.dividerColor),
+        ),
+      ),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 8,
