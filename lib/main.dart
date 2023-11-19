@@ -1,29 +1,13 @@
+import 'package:calculadora/config/window_manager_config.dart';
 import 'package:calculadora/screens/calculator.view.dart';
 import 'package:calculadora/widgets/theme_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:window_manager/window_manager.dart';
 import 'package:yaru/yaru.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await windowManager.ensureInitialized();
-
-  WindowOptions windowOptions = const WindowOptions(
-    size: Size(450, 790),
-    skipTaskbar: false,
-    titleBarStyle: TitleBarStyle.hidden,
-    maximumSize: Size(450, 790),
-    minimumSize: Size(450, 790),
-    title: "Calculadora",
-    backgroundColor: Colors.transparent,
-  );
-  windowManager.setAspectRatio(1 / 1.75);
-
-  windowManager.waitUntilReadyToShow(windowOptions, () async {
-    await windowManager.show();
-    await windowManager.focus();
-  });
+  await const WindowManagerConfig().bootstrap();
 
   runApp(const MyApp());
 }
