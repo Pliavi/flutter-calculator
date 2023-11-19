@@ -7,14 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yaru/yaru.dart';
 
-class Calculator extends StatefulWidget {
+class Calculator extends StatelessWidget {
   const Calculator({super.key});
 
-  @override
-  State<Calculator> createState() => _CalculatorState();
-}
-
-class _CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -27,29 +22,26 @@ class _CalculatorState extends State<Calculator> {
 
         return Material(
           shape: RoundedRectangleBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(12.0),
+            ),
             side: BorderSide(color: windowBorderColor),
           ),
           clipBehavior: Clip.antiAlias,
-          child: const Scaffold(
-            appBar: WindowBar(),
-            body: Column(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      Expanded(child: CalculatorHistoryDisplay()),
-                      CalculatorDisplay(),
-                    ],
-                  ),
-                ),
-                Divider(),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: CalculatorKeyboardGrid(),
-                ),
-              ],
-            ),
+          child: const Column(
+            children: [
+              WindowBar(),
+              Expanded(
+                child: CalculatorHistoryDisplay(),
+              ),
+              Divider(),
+              CalculatorDisplay(),
+              Divider(),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CalculatorKeyboardGrid(),
+              ),
+            ],
           ),
         );
       },

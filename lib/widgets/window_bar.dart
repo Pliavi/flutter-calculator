@@ -3,19 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:yaru/yaru.dart';
 
-class WindowBar extends StatefulWidget implements PreferredSizeWidget {
-  const WindowBar({
-    super.key,
-  });
+class WindowBar extends StatelessWidget {
+  const WindowBar({super.key});
 
-  @override
-  State<WindowBar> createState() => _WindowBarState();
-
-  @override
-  Size get preferredSize => const Size.fromHeight(46);
-}
-
-class _WindowBarState extends State<WindowBar> {
   @override
   Widget build(BuildContext context) {
     final Brightness brightness = Theme.of(context).brightness;

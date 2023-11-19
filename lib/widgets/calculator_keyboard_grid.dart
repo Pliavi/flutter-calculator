@@ -13,7 +13,6 @@ class CalculatorKeyboardGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = context.watch<CalculatorController>();
     final CalculatorButtonFactory buttonFactory = CalculatorButtonFactory(
-      controller: controller,
       context: context,
     );
 
