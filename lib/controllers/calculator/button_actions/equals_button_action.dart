@@ -9,5 +9,6 @@ class EqualsButtonAction extends ButtonActionStrategy {
     final result = controller.calculate(controller.display);
 
     controller.setDisplayAndBuffer(result);
+    controller.history.add(result);
   }
 }
