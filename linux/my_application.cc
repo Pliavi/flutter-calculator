@@ -47,7 +47,7 @@ static void my_application_activate(GApplication* application) {
     gtk_window_set_title(window, "calculadora");
   }
 
-  gtk_window_set_default_size(window, 1280, 720);
+  gtk_window_set_default_size(window, 450, 790);
   gtk_widget_show(GTK_WIDGET(window));
 
   g_autoptr(FlDartProject) project = fl_dart_project_new();
@@ -58,6 +58,12 @@ static void my_application_activate(GApplication* application) {
   gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(view));
 
   fl_register_plugins(FL_PLUGIN_REGISTRY(view));
+
+  const char *css_style = "window decoration { border-radius: 12px; box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.2);}";
+  GtkCssProvider *css_provider = gtk_css_provider_new();
+  gtk_css_provider_load_from_data(css_provider, css_style, -1, NULL);
+  GtkStyleContext *style_context = gtk_widget_get_style_context(GTK_WIDGET(window));
+  gtk_style_context_add_provider(style_context, GTK_STYLE_PROVIDER(css_provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
   gtk_widget_grab_focus(GTK_WIDGET(view));
 }
