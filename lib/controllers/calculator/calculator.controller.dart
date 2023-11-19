@@ -11,7 +11,7 @@ class CalculatorController extends ChangeNotifier {
   ButtonActionStrategy lastButtonAction = const ClearButtonAction();
   String buffer = '';
   bool hasError = false;
-  List<String> history = [];
+  Map<Key, String> history = {};
 
   // TODO: Instead of using all this clear/set/append in the controller
   //       we could create value objects for display and buffer
@@ -54,6 +54,11 @@ class CalculatorController extends ChangeNotifier {
     action.onPressed(this);
     lastButtonAction = action;
 
+    notifyListeners();
+  }
+
+  void removeFromHistory(Key key) {
+    history.remove(key);
     notifyListeners();
   }
 
