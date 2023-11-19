@@ -27,22 +27,3 @@ class ThemeSwitcher extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-class ThemeSwitcherProvider extends InheritedWidget {
-  const ThemeSwitcherProvider({
-    super.key,
-    required this.themeSwitcher,
-    required Widget child,
-  }) : super(child: child);
-
-  final ThemeSwitcher themeSwitcher;
-
-  static ThemeSwitcherProvider of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ThemeSwitcherProvider>()!;
-  }
-
-  @override
-  bool updateShouldNotify(ThemeSwitcherProvider oldWidget) {
-    return oldWidget.themeSwitcher != themeSwitcher;
-  }
-}

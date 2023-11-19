@@ -1,7 +1,8 @@
 import 'package:calculadora/config/window_manager_config.dart';
+import 'package:calculadora/providers/theme_switcher.dart';
 import 'package:calculadora/screens/calculator.view.dart';
-import 'package:calculadora/widgets/theme_switcher.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yaru/yaru.dart';
 
 void main() async {
@@ -17,13 +18,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeSwitcher = ThemeSwitcher();
+    return ChangeNotifierProvider(
+      create: (context) => ThemeSwitcher(),
+      builder: (context, child) {
+        final themeSwitcher = context.watch<ThemeSwitcher>();
 
-    return ThemeSwitcherProvider(
-      themeSwitcher: themeSwitcher,
-      child: ListenableBuilder(
-        listenable: themeSwitcher,
-        builder: (context, child) => YaruTheme(
+        return YaruTheme(
           data: YaruThemeData(variant: themeSwitcher.variant),
           builder: (context, yaru, child) {
             return MaterialApp(
@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
             );
           },
-        ),
-      ),
+        );
+      },
     );
   }
 }
