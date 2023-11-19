@@ -8,27 +8,31 @@ class WindowBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Brightness brightness = Theme.of(context).brightness;
+    final brightness = Theme.of(context).brightness;
     final theme = Theme.of(context);
+
+    final appBarBottomBorder = brightness == Brightness.dark
+        ? const Border(
+            bottom: BorderSide(
+              color: YaruColors.darkJet,
+              width: 1,
+            ),
+          )
+        : null;
+
+    final titleTextStyle = theme.appBarTheme.titleTextStyle?.copyWith(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+    );
 
     return GestureDetector(
       onTapDown: (details) => windowManager.startDragging(),
       child: AppBar(
-        shape: brightness == Brightness.dark
-            ? const Border(
-                bottom: BorderSide(
-                  color: YaruColors.darkJet,
-                  width: 1,
-                ),
-              )
-            : null,
+        shape: appBarBottomBorder,
         title: const Text('Calculadora'),
         centerTitle: true,
         elevation: 4,
-        titleTextStyle: theme.appBarTheme.titleTextStyle?.copyWith(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
+        titleTextStyle: titleTextStyle,
         shadowColor: Colors.black26,
         actions: [
           const ThemeSwitcherButton(),

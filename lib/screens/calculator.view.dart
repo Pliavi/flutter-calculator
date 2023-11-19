@@ -28,20 +28,24 @@ class Calculator extends StatelessWidget {
             side: BorderSide(color: windowBorderColor),
           ),
           clipBehavior: Clip.antiAlias,
-          child: const Column(
+          child: Column(
+            // XXX: This verticalDirection is necessary to make the WindowBar
+            //      shadow appear over the CalculatorHistoryDisplay.
+            //      See: https://github.com/flutter/flutter/issues/12206
+            verticalDirection: VerticalDirection.up,
             children: [
-              WindowBar(),
-              Expanded(
+              const WindowBar(),
+              const Expanded(
                 child: CalculatorHistoryDisplay(),
               ),
-              Divider(),
-              CalculatorDisplay(),
-              Divider(),
-              Padding(
+              const Divider(),
+              const CalculatorDisplay(),
+              const Divider(),
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: CalculatorKeyboardGrid(),
               ),
-            ],
+            ].reversed.toList(),
           ),
         );
       },
