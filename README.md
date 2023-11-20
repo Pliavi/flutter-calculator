@@ -14,7 +14,8 @@ Faça também a sua! :tada:
 
 # Demo
 
-[Calculator demo](https://github.com/Pliavi/flutter-calculator/assets/5985423/7d7b7c90-da14-4bd2-a0cd-c7da1036512d)
+[calculator_demo.webm](https://github.com/Pliavi/flutter-calculator/assets/5985423/6fd14ec4-bdc4-444f-a23c-c2d3bf5d8057)
+
 
 
 > Qualquer similaridade com a calculadora do Gnome/Ubuntu é mera coincidência :sweat_smile:  
