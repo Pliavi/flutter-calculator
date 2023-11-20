@@ -63,13 +63,10 @@ class _ButtonTile extends StatelessWidget {
   const _ButtonTile(
     this.child, {
     this.crossAxisSpan = 1,
-    // ignore: unused_element
-    this.mainAxisSpan = 1,
   });
 
   final Widget child;
   final int crossAxisSpan;
-  final int mainAxisSpan;
 
   @override
   Widget build(BuildContext context) {
