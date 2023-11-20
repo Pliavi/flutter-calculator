@@ -3,9 +3,6 @@ import 'package:calculadora/utils/number_util.dart';
 import 'package:flutter/material.dart';
 import 'package:function_tree/function_tree.dart';
 
-const maxLengthWithDecimal = 20;
-const maxLength = 15;
-
 class CalculatorController extends ChangeNotifier {
   String display = '0';
   ButtonActionStrategy lastButtonAction = const ClearButtonAction();

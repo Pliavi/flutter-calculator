@@ -21,6 +21,18 @@ class CalculatorDisplay extends StatelessWidget {
         horizontal: 16,
         vertical: 8,
       ),
+      // TODO: The Fittebox is necessary to avoid overflow
+      //       when the display is too big.
+      //       But, if the user types a lot of digits, the display
+      //       will be too small.
+      //       It needs a way to keep the fittebox, but in addition
+      //       add some linebreaks on operator characters.
+      //       NOTE: I'm copying this idea from Xiaomi's calculator.
+      //       Maybe we will need 2 different displays variables
+      //       One to be calculated with no breaklines
+      //       and another to be displayed with all the formatting stuff
+      //       It will be also greate because we can use this to show
+      //       visual operators like "×" and "÷" instead of "*" and "/"
       child: FittedBox(
         fit: BoxFit.scaleDown,
         child: Text(

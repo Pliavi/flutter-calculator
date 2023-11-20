@@ -73,9 +73,9 @@ class _ButtonTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StaggeredGridTile.count(
+    return StaggeredGridTile.extent(
+      mainAxisExtent: 64,
       crossAxisCellCount: crossAxisSpan,
-      mainAxisCellCount: mainAxisSpan,
       child: child,
     );
   }

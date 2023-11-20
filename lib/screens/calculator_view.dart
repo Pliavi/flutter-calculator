@@ -42,7 +42,10 @@ class CalculatorView extends StatelessWidget {
               const CalculatorDisplay(),
               const Divider(),
               const Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 8.0,
+                ),
                 child: CalculatorKeyboardGrid(),
               ),
             ].reversed.toList(),

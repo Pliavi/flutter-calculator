@@ -8,11 +8,11 @@ class WindowManagerConfig {
     await windowManager.ensureInitialized();
 
     WindowOptions windowOptions = const WindowOptions(
-      size: Size(450, 790),
+      size: Size(450, 800),
       skipTaskbar: false,
       titleBarStyle: TitleBarStyle.hidden,
-      maximumSize: Size(450, 790),
-      minimumSize: Size(450, 790),
+      maximumSize: Size(450, 800),
+      minimumSize: Size(450, 800),
       title: "Calculadora",
       backgroundColor: Colors.transparent,
     );

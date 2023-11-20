@@ -1,6 +1,9 @@
 import 'package:calculadora/controllers/calculator/button_actions/button_action.dart';
 import 'package:calculadora/controllers/calculator/calculator_controller.dart';
 
+const maxLengthWithDecimal = 20;
+const maxLength = 15;
+
 class NumberButtonAction extends ButtonActionStrategy {
   const NumberButtonAction(super.value);
 
